@@ -7,12 +7,7 @@ services:
       - "8080:8080"
     container_name: rtmp_server
   
-  rtmp2:
-    build: ./rtmp2
-    ports:
-      - "1936:1936"
-      - "80:80"
-    container_name: rtmp_server2
+
     
 
   auth:
