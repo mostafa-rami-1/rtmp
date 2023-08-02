@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
+const { exec } = require('child_process');
 
 app.use(express.urlencoded());
 
 app.post("/auth", function (req, res) {
-  /* This server is only available to nginx */
+  exec()
   const streamkey = req.body.key;
 
-  /* You can make a database of users instead :) */
   if (streamkey === "mostafa") {
     res.status(200).send();
     return;
