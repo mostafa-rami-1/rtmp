@@ -6,10 +6,18 @@ services:
       - "1935:1935"
       - "8080:8080"
     container_name: rtmp_server
-  
-
     
-
   auth:
     build: ./auth
     container_name: auth_server
+
+  ffmpeg_container:
+    image: jrottenberg/ffmpeg
+    container_name: ffmpeg_container
+    depends_on:
+      - rtmp
+      - auth
+    ports:
+      - "29002:29000"
+    tty: true
+    command: -i 'http://line.rs4ott.com:80/live/609b58153b/19a2f5ea6c5b/554021.m3u8' -c:v copy -c:a aac -f flv rtmp://139.162.176.71:1935/bein1/hp?key=mostafa 
